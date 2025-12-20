@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 
 #Inititialize file path, variables, input features, reproducible seed, and training ratio
-CSV_PATH = "data.csv"
+CSV_PATH = "data/data.csv"
 TARGET = "loan_approved"
 INPUT_COLS = ["income", "credit_score", "loan_amount", "years_employed"]
 N_BINS = 4

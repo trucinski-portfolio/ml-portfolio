@@ -68,4 +68,14 @@ Optional columns (ignored if present):
 To install dependencies:
 
 ```bash
-python -m pip install -r requirements.txt
+python -m pip install -r env/requirements.txt
+
+## How to run
+
+From the project root:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r env/requirements.txt
+python src/main.py
