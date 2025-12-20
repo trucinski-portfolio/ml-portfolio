@@ -11,7 +11,7 @@ from sklearn.model_selection import train_test_split, ParameterGrid
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.metrics import accuracy_score, f1_score, log_loss, confusion_matrix
 
-filename = "data.csv"
+filename = "data/data.csv"
 df = pd.read_csv(filename, header=0) # header=0 since first row is feature name
 
 X = df.iloc[:, 2:32].values # Using input features from col 2-32 (30 total)

@@ -1,58 +1,87 @@
-# README: Breast Cancer Diagnosis MLP Performance Comparison
-**Course:** CS-622  
-**Author:** Thomas Rucinski  
-**Date:** December 6, 2025  
+# Breast Cancer Diagnostic Classification with MLP (scikit-learn)
 
-## Project Overview
-This project evaluates the performance of various **Multi-Layer Perceptron (MLP)** neural network configurations in diagnosing breast cancer tumors as either **Malignant** or **Benign**. Using the *Wisconsin Breast Cancer Diagnostic* dataset, the script automates the training and testing of 12 unique model variations to determine which architectural and optimization hyperparameters yield the highest diagnostic accuracy and clinical reliability.
+This project evaluates multiple **Multi-Layer Perceptron (MLP)** neural network architectures for classifying breast tumors as **Malignant** or **Benign** using the **Wisconsin Breast Cancer Diagnostic Dataset**.
 
-
+Originally developed for CS-622, the project has been refactored for reproducibility, clear evaluation, and portfolio presentation.
 
 ---
 
-## Dataset Specification
-* **Source:** [UCI Machine Learning Repository / Kaggle](https://www.kaggle.com/datasets/uciml/breast-cancer-wisconsin-data/data)
-* **Input Features:** 30 numerical features (computed from digitized images of fine needle aspirates of breast masses).
-* **Target Classes:** 2 (Malignant 'M' = 1, Benign 'B' = 0).
-* **Pre-processing:** * **Label Encoding:** Converts categorical diagnosis to binary integers.
-    * **Standardization:** Utilizes `StandardScaler` to ensure features have a mean of 0 and a variance of 1, which is critical for MLP convergence.
-    * **Data Split:** 80% Training / 20% Testing.
+## Project Overview
+
+- **Task:** Binary classification (Malignant vs Benign)
+- **Model:** scikit-learn `MLPClassifier`
+- **Focus:** Architecture comparison, optimization behavior, and clinically relevant metrics
+- **Clinical emphasis:** Recall (sensitivity) and log loss to minimize false negatives
+
+The script systematically evaluates **12 distinct MLP configurations** to identify models that balance accuracy with reliable probabilistic predictions.
+
+---
+
+## Dataset
+
+- **Source:** Wisconsin Breast Cancer Diagnostic Dataset  
+  https://www.kaggle.com/datasets/uciml/breast-cancer-wisconsin-data
+- **Samples:** 569
+- **Features:** 30 real-valued, image-derived nuclear features
+- **Target Encoding:**
+  - Malignant (`M`) → 1
+  - Benign (`B`) → 0
+
+### Preprocessing
+- Label encoding of diagnosis
+- Feature standardization via `StandardScaler`
+- Stratified 80/20 train–test split
 
 ---
 
 ## Experimental Design
-The script implements a grid search to compare model performance across different hidden layer depths and optimization functions.
 
-### Hyperparameters Explored
-| Parameter | Values Evaluated |
-| :--- | :--- |
-| **Hidden Layer Sizes** | `(100,)`, `(50, 50)`, `(100, 50, 25)` |
-| **Activation Functions** | `ReLU`, `Tanh` |
-| **Solvers (Optimizers)** | `Adam`, `SGD` |
-| **Max Iterations** | `2000` |
+### Hyperparameters Evaluated
 
-### Evaluation Metrics
-To provide a comprehensive view of model performance, the following metrics are calculated for both training and test sets:
-* **Accuracy:** Overall percentage of correct predictions.
-* **Sensitivity (Recall):** The ability to identify all malignant tumors (minimizing False Negatives).
-* **Specificity:** The ability to identify all benign tumors (minimizing False Positives).
-* **F1 Score:** The balance between precision and sensitivity.
-* **Log Loss:** Evaluates the certainty of the model's probabilistic predictions.
+| Component | Values |
+|---------|--------|
+| Hidden layers | `(100,)`, `(50, 50)`, `(100, 50, 25)` |
+| Activations | ReLU, Tanh |
+| Solvers | Adam, SGD |
+| Max iterations | 2000 |
 
-
+Each configuration is trained and evaluated independently to assess generalization performance.
 
 ---
 
-## Installation & Execution
-1.  Ensure `data.csv` is located in the same directory as the script.
-2.  **Dependencies:**
-    ```bash
-    pip install pandas numpy scikit-learn
-    ```
-3.  **Run Analysis:**
-    ```bash
-    python main.py
-    ```
+## Evaluation Metrics
 
-## Summary of Results
-The script outputs two distinct tables ranking the **Top 5 Models** based on **Test Accuracy**. This ranking allows for a quick comparison between training success and real-world generalization (test) performance, helping to identify models that may be overfitting.
+Models are evaluated on both training and test sets using:
+
+- **Accuracy**
+- **Sensitivity (Recall)** – critical for minimizing missed malignancies
+- **Specificity**
+- **F1 Score**
+- **Log Loss** – evaluates probabilistic confidence
+
+Results are ranked by **test accuracy** to highlight models that generalize well.
+
+---
+
+## Repository Structure
+
+- `src/` — MLP training and evaluation script  
+- `data/` — Breast cancer dataset  
+- `env/` — Environment and dependency specifications  
+  - `requirements.txt` — Python dependencies  
+- `README.md` — Project documentation
+
+---
+
+## Setup and Execution
+
+### 1. Create and activate a virtual environment
+```bash
+python -m venv .venv
+source .venv/bin/activate
+
+### 2. Install Dependencies
+pip install -r env/requirements.txt
+
+### 3. Run the experiment
+python src/main.py

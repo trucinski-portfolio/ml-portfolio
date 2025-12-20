@@ -1,0 +1,51 @@
+# --------------------
+# Python virtual env
+# --------------------
+.venv/
+venv/
+ENV/
+env/
+
+# --------------------
+# Python cache / bytecode
+# --------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# --------------------
+# VS Code settings (optional)
+# Keep settings.json if you want reproducibility
+# --------------------
+.vscode/*
+!.vscode/settings.json
+
+# --------------------
+# Jupyter
+# --------------------
+.ipynb_checkpoints/
+
+# --------------------
+# OS files
+# --------------------
+.DS_Store
+Thumbs.db
+
+# --------------------
+# Logs / outputs
+# --------------------
+*.log
+
+# --------------------
+# Model artifacts (if you save models later)
+# --------------------
+*.pkl
+*.joblib
+models/
+
+# --------------------
+# Temporary / scratch files
+# --------------------
+tmp/
+temp/
