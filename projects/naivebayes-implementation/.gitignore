@@ -1,0 +1,19 @@
+# Python virtual environments
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# OS files
+.DS_Store
+
+# Editor settings
+.vscode/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data artifacts (if regenerated)
+*.log
